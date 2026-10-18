@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KANTARA | Cinematic Experience</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#bd2028;--gold:#dba64a;--cream:#f4dfb0;--black:#090807}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:#fff;font-family:Poppins,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+#embers{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}
+header{height:82px;position:absolute;z-index:15;top:0;left:0;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:linear-gradient(#000c,transparent)}
+.brand{font-family:Cinzel,serif;font-size:30px;font-weight:800;letter-spacing:5px;color:#e8b65a;text-shadow:0 0 18px #b54c1d80}
+.brand small{display:block;font:9px Poppins,sans-serif;letter-spacing:5px;color:#eee;margin-top:-2px}
+nav{display:flex;gap:28px;font-size:12px;color:#ddd}
+nav a:hover{color:var(--gold)}
+.header-right{display:flex;gap:14px;align-items:center}
+.search{background:#ffffff12;border:1px solid #ffffff35;border-radius:25px;padding:9px 13px;color:white;width:155px;outline:none}
+.search::placeholder{color:#ccc}
+.signin{background:var(--red);color:white;border:0;padding:10px 19px;border-radius:4px;font-size:12px;font-weight:600}
+.hero{position:relative;min-height:740px;display:flex;align-items:center;padding:120px 7% 90px;isolation:isolate;background:
+linear-gradient(90deg,#080705 0%,#080705e8 26%,#08070588 53%,#08070518 100%),
+linear-gradient(0deg,#090807 0%,transparent 35%),
+url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=90') center/cover}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 70% 48%,#a63d101a,transparent 55%)}
+.hero-content{max-width:650px}
+.eyebrow{color:var(--gold);letter-spacing:5px;font-size:11px;margin-bottom:20px}
+h1{font-family:Cinzel,serif;font-size:clamp(52px,8vw,105px);line-height:.98;letter-spacing:3px;text-shadow:0 5px 30px #000}
+h1 span{display:block;color:#c92b26;text-shadow:0 0 28px #b5282055}
+.subtitle{font-family:Cinzel,serif;color:#e8c780;font-size:16px;letter-spacing:4px;margin:23px 0}
+.description{font-size:13px;line-height:2;color:#ded8cc;max-width:500px;margin-bottom:24px}
+.meta{display:flex;flex-wrap:wrap;gap:11px;align-items:center;font-size:11px;color:#ddd;margin-bottom:28px}
+.meta span{border:1px solid #ffffff35;padding:5px 9px}
+.meta .rating{color:#f1c45c;border-color:#b68b3d}
+.buttons{display:flex;gap:13px;flex-wrap:wrap}
+.btn{border:0;padding:14px 24px;font-size:12px;font-weight:700;border-radius:3px;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#f1e9db;color:#17110d}
+.btn-secondary{background:#ffffff20;color:white;border:1px solid #ffffff50;backdrop-filter:blur(6px)}
+.btn-primary:hover{background:var(--gold)}
+.scroll-note{margin-top:30px;font-size:10px;color:#b9a78b;letter-spacing:3px}
+.section{padding:42px 6%;position:relative}
+.section-title{font-family:Cinzel,serif;font-size:25px;letter-spacing:2px;margin-bottom:8px}
+.section-subtitle{font-size:11px;color:#bcae98;margin-bottom:27px}
+.gold-line{height:1px;width:100%;background:linear-gradient(90deg,#b58a3e,transparent);margin:18px 0 25px}
+.culture-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.culture-card{position:relative;min-height:285px;overflow:hidden;border:1px solid #bd8b3b44;background:#17110d}
+.culture-card img{width:100%;height:285px;object-fit:cover;filter:brightness(.68);transition:.5s}
+.culture-card:hover img{transform:scale(1.06);filter:brightness(.9)}
+.culture-card .caption{position:absolute;bottom:0;left:0;right:0;padding:35px 20px 20px;background:linear-gradient(transparent,#080604)}
+.caption h3{font-family:Cinzel,serif;color:#f0c36c;font-size:18px;margin-bottom:7px}
+.caption p{font-size:11px;color:#e4d8c3;line-height:1.7}
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;padding:65px 6%;background:linear-gradient(115deg,#21150d,#100b08 65%,#2c1510)}
+.feature-image{height:360px;overflow:hidden;border:1px solid #a77834}
+.feature-image img{width:100%;height:100%;object-fit:cover}
+.feature h2{font:700 35px Cinzel,serif;color:var(--gold);margin-bottom:18px}
+.feature p{font-size:12px;line-height:2;color:#d2c6b3;margin-bottom:20px}
+.feature ul{list-style:none;font-size:12px;color:#e9ddca;line-height:2.4}
+.feature li:before{content:"✦ ";color:var(--gold)}
+.quote{padding:70px 8%;text-align:center;background:radial-gradient(ellipse,#321a11,#090807 70%)}
+.quote .ornament{color:var(--gold);font-size:23px;letter-spacing:10px;margin-bottom:20px}
+.quote blockquote{font:clamp(20px,3.4vw,34px)/1.6 Cinzel,serif;color:#f1dfbc;max-width:850px;margin:auto}
+.quote p{font-size:10px;color:#b9a98e;letter-spacing:4px;margin-top:20px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery img{width:100%;height:210px;object-fit:cover;filter:saturate(.8);border:1px solid #ffffff16;transition:.3s}
+.gallery img:hover{filter:saturate(1.1);transform:scale(1.02)}
+.cta{text-align:center;padding:65px 20px;background:linear-gradient(#0b0806d9,#0b0806ed),url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=85') center/cover}
+.cta h2{font:700 clamp(25px,4vw,42px) Cinzel,serif;color:var(--gold);margin-bottom:14px}
+.cta p{font-size:12px;color:#d0c2ad;margin-bottom:24px}
+footer{padding:30px 6%;border-top:1px solid #dba64a30;text-align:center;background:#050403}
+footer .brand{font-size:24px;margin-bottom:14px}
+footer p{font-size:10px;line-height:2;color:#938675}
+.toast{position:fixed;bottom:25px;right:25px;z-index:30;background:#f1e9db;color:#1b110a;padding:14px 20px;border-radius:4px;font-size:12px;display:none;box-shadow:0 8px 25px #0008}
+.toast.show{display:block}
+@media(max-width:800px){
+ header{height:auto;min-height:75px;flex-wrap:wrap;padding:15px 5%;gap:12px}
+ .brand{font-size:24px}
+ nav{order:3;width:100%;justify-content:space-between;gap:8px;font-size:10px}
+ .search{width:115px}
+ .hero{min-height:680px;padding:150px 6% 90px;background-position:60% center}
+ .culture-grid{grid-template-columns:1fr 1fr}
+ .feature{grid-template-columns:1fr}
+ .feature-image{height:290px}
+ .gallery{grid-template-columns:1fr 1fr}
+ .gallery img{height:175px}
+}
+@media(max-width:480px){
+ .header-right{gap:6px}
+ .search{width:95px;padding:8px}
+ .signin{padding:9px 12px}
+ .hero{min-height:650px}
+ .eyebrow{letter-spacing:3px}
+ .subtitle{font-size:12px;letter-spacing:2px}
+ .description{font-size:12px}
+ .culture-grid{grid-template-columns:1fr}
+ .culture-card,.culture-card img{height:250px;min-height:250px}
+ .section-title{font-size:21px}
+ .feature h2{font-size:27px}
+ .gallery img{height:140px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+<canvas id="embers" aria-hidden="true"></canvas>
+
+<header>
+  <a href="#" class="brand">KANTARA<small>A LEGEND · A MYSTERY</small></a>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#story">The Story</a>
+    <a href="#culture">Culture</a>
+    <a href="#gallery">Gallery</a>
+  </nav>
+  <div class="header-right">
+    <input class="search" id="search" type="search" placeholder="Explore..." aria-label="Explore sections">
+    <button class="signin" onclick="notify('Welcome to the world of Kantara!')">Explore</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">✦ AN EPIC ROOTED IN THE SOIL ✦</div>
+    <h1>KAN<span>TARA</span></h1>
+    <div class="subtitle">THE LAND · THE PEOPLE · THE DIVINE</div>
+    <p class="description">
+      Where ancient beliefs meet untamed wilderness, a powerful tale unfolds.
+      Enter a world of sacred traditions, dense forests, village life and
+      the mysterious bond between humanity and the divine.
+    </p>
+    <div class="meta">
+      <span class="rating">★ CINEMATIC EXPERIENCE</span>
+      <span>INDIAN FOLKLORE</span>
+      <span>DRAMA · MYSTERY</span>
+      <span>COASTAL KARNATAKA</span>
+    </div>
+    <div class="buttons">
+      <button class="btn btn-primary" onclick="playTrailer()">▶ WATCH TRAILER</button>
+      <a href="#story" class="btn btn-secondary">ⓘ EXPLORE THE STORY</a>
+    </div>
+    <div class="scroll-note">↓ &nbsp; ENTER THE ANCIENT WORLD &nbsp; ↓</div>
+  </div>
+</section>
+
+<section class="section" id="culture">
+  <h2 class="section-title">A WORLD OF ANCIENT MYSTERY</h2>
+  <p class="section-subtitle">Inspired by the folklore, landscapes and cultural spirit of coastal Karnataka.</p>
+  <div class="gold-line"></div>
+  <div class="culture-grid">
+    <article class="culture-card">
+      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85" alt="Dense green forest">
+      <div class="caption">
+        <h3>THE SACRED FOREST</h3>
+        <p>Ancient trees, hidden paths and a wilderness filled with stories.</p>
+      </div>
+    </article>
+    <article class="culture-card">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85" alt="Mystical forest landscape">
+      <div class="caption">
+        <h3>THE UNKNOWN</h3>
+        <p>Where faith, nature and the unseen world exist side by side.</p>
+      </div>
+    </article>
+    <article class="culture-card">
+      <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85" alt="Warm glowing lights in darkness">
+      <div class="caption">
+        <h3>THE DIVINE FLAME</h3>
+        <p>Fire, devotion and the powerful atmosphere of sacred rituals.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="feature" id="story">
+  <div class="feature-image">
+    <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1100&q=85" alt="Sunlight streaming through an Indian-style forest landscape">
+  </div>
+  <div>
+    <div class="eyebrow">✦ ROOTS OF A LEGEND ✦</div>
+    <h2>THE LAND REMEMBERS</h2>
+    <p>
+      In a land shaped by forests, traditions and generations of belief,
+      the boundary between the human world and the divine feels close.
+      Kantara draws its atmosphere from the cultural heritage and folklore
+      of Karnataka.
+    </p>
+    <ul>
+      <li>Folklore and sacred traditions</li>
+      <li>Forests and village life</li>
+      <li>Tradition, land and identity</li>
+      <li>Mystery, conflict and devotion</li>
+    </ul>
+    <br>
+    <a href="#gallery" class="btn btn-primary">DISCOVER THE WORLD →</a>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="ornament">✦ ❖ ✦</div>
+  <blockquote>
+    “Some stories are not merely told. They live in the land, the people
+    and the traditions passed down through generations.”
+  </blockquote>
+  <p>A TRIBUTE TO THE SPIRIT OF INDIAN FOLKLORE</p>
+</section>
+
+<section class="section" id="gallery">
+  <h2 class="section-title">THE BEAUTY OF THE WILD</h2>
+  <p class="section-subtitle">Forests, shadows, earth and fire — a visual journey through a folklore-inspired world.</p>
+  <div class="gold-line"></div>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=650&q=80" alt="Deep green forest">
+    <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=650&q=80" alt="Sunlit forest">
+    <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=650&q=80" alt="Tall trees">
+    <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=650&q=80" alt="Golden lights at night">
+  </div>
+</section>
+
+<section class="cta">
+  <div class="eyebrow">✦ THE FOREST IS CALLING ✦</div>
+  <h2>FEEL THE POWER OF THE LEGEND</h2>
+  <p>Step into a world where folklore, nature and the divine come together.</p>
+  <button class="btn btn-primary" onclick="playTrailer()">▶ EXPERIENCE THE MAGIC</button>
+</section>
+</main>
+
+<footer>
+  <div class="brand">KANTARA</div>
+  <p>A CINEMATIC FAN-MADE WEB DESIGN CONCEPT</p>
+  <p>Inspired by Indian folklore and the cultural spirit of coastal Karnataka.</p>
+  <p>© <span id="year"></span> Fan-made concept. Not affiliated with Netflix or the film's rights holders.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+function notify(message){
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2800);
+}
+
+function playTrailer(){
+  notify("Add an authorized Kantara trailer URL to enable video playback.");
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+document.getElementById("search").addEventListener("keydown",function(event){
+  if(event.key==="Enter"){
+    const value=this.value.trim().toLowerCase();
+    const sections={
+      story:"story",
+      forest:"culture",
+      culture:"culture",
+      gallery:"gallery"
+    };
+    const target=Object.keys(sections).find(key=>key.includes(value)||value.includes(key));
+    if(target){
+      document.getElementById(sections[target]).scrollIntoView({behavior:"smooth"});
+    }else{
+      notify("Try searching for story, forest, culture or gallery.");
+    }
+  }
+});
+
+// Floating golden embers for a cinematic atmosphere.
+const canvas=document.getElementById("embers");
+const ctx=canvas.getContext("2d");
+let particles=[],w=0,h=0,frame;
+
+function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  w=window.innerWidth;
+  h=window.innerHeight;
+  canvas.width=w*dpr;
+  canvas.height=h*dpr;
+  canvas.style.width=w+"px";
+  canvas.style.height=h+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  particles=Array.from({length:Math.min(65,Math.floor(w/15))},()=>({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*2+0.5,
+    speed:Math.random()*0.65+0.15,
+    drift:Math.random()*0.5-0.25,
+    alpha:Math.random()*0.6+0.2
+  }));
+}
+
+function animate(){
+  ctx.clearRect(0,0,w,h);
+  for(const p of particles){
+    p.y-=p.speed;
+    p.x+=p.drift;
+    if(p.y< -5){p.y=h+5;p.x=Math.random()*w}
+    if(p.x<0)p.x=w;
+    if(p.x>w)p.x=0;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(238,156,56,${p.alpha})`;
+    ctx.shadowBlur=9;
+    ctx.shadowColor="#d86b22";
+    ctx.fill();
+  }
+  ctx.shadowBlur=0;
+  frame=requestAnimationFrame(animate);
+}
+
+resize();
+animate();
+window.addEventListener("resize",resize);
+document.addEventListener("visibilitychange",()=>{
+  cancelAnimationFrame(frame);
+  if(!document.hidden)animate();
+});
+</script>
+</body>
+</html>
+
